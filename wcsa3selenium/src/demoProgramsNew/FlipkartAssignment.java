@@ -1,0 +1,41 @@
+package demoProgramsNew;
+
+import java.time.Duration;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FlipkartAssignment {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		driver.get("https://www.flipkart.com");
+		//Thread.sleep(7000);
+		driver.findElement(By.xpath("//button[text()='✕']")).click();
+		//Thread.sleep(3000);
+		driver.findElement(By.name("q")).sendKeys("hp laptop");
+		//Thread.sleep(3000);
+		driver.findElement(By.xpath("//button[@class='L0Z3Pu']")).click();
+		//Thread.sleep(8000);
+		String priceOfHpLaptop = driver.findElement(By.xpath("//div[text()='HP Athlon Dual Core 3050U - (8 GB/512 GB SSD/Windows 11 Home) 15s- eq1559AU Thin and Light Laptop']/ancestor::div[@class='_3pLy-c row']/descendant::div[@class='_30jeq3 _1_WHN1']")).getText();
+		//Thread.sleep(8000);
+		/*List<WebElement> hp = driver.findElements(By.xpath("//a[text()='Laptops'][1]"));
+		for(WebElement suggest: hp)
+		{
+	      String option = suggest.getText();
+	      Thread.sleep(2000);
+	      System.out.println(option);
+		}*/
+
+		System.out.println(priceOfHpLaptop+": this is the price of hp laptop");
+
+	}
+
+}
